@@ -1,0 +1,174 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="template.master.cs" Inherits="QLTrungNgocSports.Pages.Share.template" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Administrator</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../bootstrap/js/popper.min.js" />
+    <link rel="stylesheet" href="../../bootstrap/fontawesome5.15-3/css/all.css" />
+    <link rel="stylesheet" href="../../bootstrap/fontawesome5.15-3/js/all.js" />
+    <script src="JavaScript.js"></script>
+    <link rel="stylesheet" href="dinhdang.css"/>
+</head>
+<body style="background-color:#E4E9EC">
+    <%---------%>
+    <header style="background-color:white;">
+        <div class="row">
+            <div class="col">
+                <h4>Trung Ngọc Sports</h4>
+            </div>
+            <div class="col">
+                <ul class="nav" style="float:right;">
+                    <li class="nav-item">
+                        <a class="nav-link chuden" style="border-left:1px solid#000000;" href="#"><i class="fa fa-question" aria-hidden="true"></i> Hỗ trợ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link chuden" style="border-left:1px solid#000000;" href="#"><i class="fa fa-cog" aria-hidden="true"></i> Thiết lập</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link chuden" style="border-left:1px solid#000000;" href="#"><i class="fa fa-user" aria-hidden="true"></i> Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <%---------%>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-lg-top" style="background-color: #35AAE7;"">
+        <div class="container-fluid">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white;" href="../PagesAdmin/default.aspx"><i class="fa fa-user" aria-hidden="true"></i> Tổng quan</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <%--<a class="nav-link"  style="color:white;border-left:1px solid#fff;" href="../PagesAdmin/ql_DonDatSan.aspx"><i class="fa fa-archive" aria-hidden="true"></i> Đơn đặt sân</a>--%>
+                    <a class="nav-link dropdown-toggle" style="color:white;border-left:1px solid#fff;" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-archive" aria-hidden="true"></i> Đơn đặt sân</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" href="../PagesAdmin/ql_DonDatSan.aspx">Duyệt đơn đặt sân</a></li>
+                        <li><a class="dropdown-item" href="../PagesAdmin/ql_DonDaDuyet.aspx">Đơn đã duyệt</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown1" style="color:white;border-left:1px solid#fff;" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-briefcase" aria-hidden="true"></i> Đơn đặt hàng</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown1">
+                        <li><a class="dropdown-item" href="../PagesAdmin/ql_HoaDon.aspx">Duyệt đơn đặt hàng</a></li>
+                        <li><a class="dropdown-item" href="../PagesAdmin/ql_HoaDonGuest.aspx">Duyệt đơn đặt hàng Guest</a></li>
+                        <li><a class="dropdown-item" href="../PagesAdmin/ql_HoaDonDaDuyet.aspx">Đơn đã duyệt</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <%-----------%>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link"  style="color:white;border-left:1px solid#fff;" href="../PagesAdmin/ql_ThongKe.aspx"><i class="fas fa-chart-bar"></i> Thống kê</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  style="color:white;border-left:1px solid#fff;" href="#"><i class="fas fa-bell"></i> Tình trạng</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <div data-bs-spy="scroll" data-bs-target="" data-bs-offset="0" tabindex="0" style="margin:20px auto;">
+                    <div class="card">
+                        <h5 style="margin:10px">Danh mục quản lý</h5>
+                        <div class="accordion" id="accordionExample">
+                            <%-------------%>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                  <button class="accordion-button s13" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="fas fa-money-check"></i>&nbsp;Quản lý sân tập
+                                  </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                  <div class="accordion-body">
+                                      <a href="../PagesAdmin/ql_San.aspx" style="border-bottom:1px solid#808080" class="nav-link chuden s13"><i class="fas fa-arrow-right"></i>&nbsp;Sân tập</a>
+                                      <a href="../PagesAdmin/ql_LoaiSanTap.aspx" class="nav-link chuden s13"><i class="fas fa-arrow-right"></i>&nbsp;Loại sân tập</a>
+                                  </div>
+                                </div>
+                             </div>
+                             <%-------------%>
+                         </div>
+                    <%------------------%>
+                         <div class="accordion" id="accordion1">
+                         <%----------%>
+                             <div class="accordion-item">
+                                <h5 class="accordion-header" id="headingOne1">
+                                  <button class="accordion-button s13" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
+                                    <i class="fab fa-product-hunt"></i>&nbsp;Quản lý sản phẩm
+                                  </button>
+                                </h5>
+                                <div id="collapseOne1" class="accordion-collapse collapse" aria-labelledby="headingOne1" data-bs-parent="#accordion1">
+                                  <div class="accordion-body ">
+                                      <a href="../PagesAdmin/ql_SanPham.aspx" style="border-bottom:1px solid#808080" class="nav-link chuden s13"><i class="fas fa-arrow-right"></i>&nbsp;Sản phẩm</a>
+                                      <a href="../PagesAdmin/ql_LoaiSanPham.aspx" style="border-bottom:1px solid#808080" class="nav-link chuden s13"><i class="fas fa-arrow-right"></i>&nbsp;Loại sản phẩm</a>
+                                      <a href="../PagesAdmin/ql_HangSanXuat.aspx" style="border-bottom:1px solid#808080" class="nav-link chuden s13"><i class="fas fa-arrow-right"></i>&nbsp;Hãng sản xuất</a>
+                                      <a href="#" class="nav-link chuden s13"><i class="fas fa-arrow-right"></i>&nbsp;Hình ảnh</a>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        <%--------------------%>
+                          <div class="accordion" id="accordion2">
+                       <%----------------%>
+                              <div class="accordion-item">
+                                <h5 class="accordion-header" id="headingw1">
+                                  <button class="accordion-button s13" type="button" data-bs-toggle="collapse" data-bs-target="#collapsew1" aria-expanded="true" aria-controls="collapsew1">
+                                    <i class="fas fa-sliders-h"></i>&nbsp;Quản lý trang web
+                                  </button>
+                                </h5>
+                                <div id="collapsew1" class="accordion-collapse collapse" aria-labelledby="headingw1" data-bs-parent="#accordion2">
+                                  <div class="accordion-body">
+                                      <a href="../PagesAdmin/ql_BannerSlide.aspx" class="nav-link chuden s13"><i class="fas fa-arrow-right"></i>&nbsp;Quản lý banner</a>
+                                  </div>
+                                </div>
+                              </div>
+                             <%----------------%>
+                          </div>
+                        <%------------------%>
+                    <%--------------------%>
+                          <div class="accordion" id="accordion3">
+                              <%----------------%>
+                              <div class="accordion-item">
+                                <h5 class="accordion-header" id="headingw2">
+                                  <button class="accordion-button s13" type="button" data-bs-toggle="collapse" data-bs-target="#collapsew2" aria-expanded="true" aria-controls="collapsew2">
+                                    <i class="fas fa-user-circle"></i>&nbsp;Quản lý tài khoản
+                                  </button>
+                                </h5>
+                                <div id="collapsew2" class="accordion-collapse collapse" aria-labelledby="headingw2" data-bs-parent="#accordion3">
+                                  <div class="accordion-body">
+                                      <a href="../PagesAdmin/ql_KhachHang.aspx" style="border-bottom:1px solid#808080" class="nav-link chuden s13"><i class="fas fa-arrow-right"></i>&nbsp;Tài khoản khách hàng</a>
+                                      <a href="../PagesAdmin/ql_NhanVien.aspx" class="nav-link chuden s13"><i class="fas fa-arrow-right"></i>&nbsp;Tài khoản nhân viên</a>
+                                  </div>
+                                </div>
+                              </div>
+                             <%----------------%>
+                           </div>
+                   <%------------------%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-10">
+                <%---------%>
+                <div class="card" style="margin:20px auto;">
+                    <div>
+                        <form runat="server">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+                            </asp:ContentPlaceHolder>
+                        </form>
+                    </div>
+                </div>
+                <%---------%>
+            </div>
+        </div>
+        </div>
+</body>
+</html>

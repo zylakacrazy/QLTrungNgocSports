@@ -1,0 +1,248 @@
+﻿                                                                                                                                                                                                                                                                                                                                                                                                                                            <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="_Layout.master.cs" Inherits="QLTrungNgocSports.Pages.Share._Layout" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Trung Ngọc Sports</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../bootstrap/js/popper.min.js" />
+    <link rel="stylesheet" href="../../bootstrap/fontawesome5.15-3/css/all.css" />
+    <link rel="stylesheet" href="../../bootstrap/fontawesome5.15-3/js/all.js" />
+    <script src="JavaScript.js"></script>
+    <link rel="stylesheet" href="dinhdang.css"/>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <%-------Header------%>
+    <header>
+        <div class="header-1">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="nav">
+                        <li class="nav-item menu-red">
+                            <a class="nav-link header-a" href="https://www.facebook.com/profile.php?id=1000097602900201"><i class="fab fa-facebook-square"></i></a>
+                        </li>
+                        <li class="nav-item menu-red">
+                            <a class="nav-link header-a" href="https://www.youtube.com/channel/UCYU4PHrEGzdEYB_oQA5cV_Q"><i class="fab fa-youtube"></i></a>
+                        </li>
+                        <li class="nav-item menu-red">
+                            <a class="nav-link header-a" href="tel:0978883501"><i class="fas fa-phone-alt"></i> 0978.883.501</a>
+                        </li>
+                        <li class="nav-item menu-red">
+                            <a class="nav-link header-a" href="mailto:minhdung2nd@gmail.com"><i class="fas fa-envelope"></i> minhdung2nd@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6" >
+                    <ul class="nav"style="float:right;">
+                        <% if (Session["user"] == null)
+                            { %>
+                            <li class="nav-item menu-red">
+                                <a class="nav-link header-a" href="../PagesUser/Register.aspx"><i class="fas fa-registered"></i> Đăng ký</a>
+                            </li>
+                            <li class="nav-item menu-red">
+                                <a class="nav-link header-a" href="../PagesUser/Login.aspx"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                            </li>
+                            <%}else
+                            { %>
+                            <li class="nav-item menu-red hvr-logout">
+                                <a class="nav-link header-a" href="../PagesUser/Logout.aspx">Chào <% Response.Write(Session["user"].ToString()); %>!</a>
+                            </li>
+                            <%} %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <%-------Header------%>
+    <%-------Navbar------%>
+    <div class="sticky-top">
+        <nav class="navbar navbar-light bg-light sticky-top"  data-toggle="affix" id="mainNav">
+            <a class="navbar-brand" href="../PagesUser/default.aspx">
+               <%-- <img src="../../Images/logo/logo.jpg" alt="" width="70" height="70" class="d-inline-block align-text-top">--%>
+               <strong style="margin:auto 20px;">Trung Ngọc Sports</strong>
+            </a>
+            <%----left-nav----%>
+            <ul class="mr-auto">
+            </ul>
+            <%----left-nav----%>
+            <%----right-nav----%>
+            <ul class="nav ml-auto">
+                <li class="nav-item menu-red">
+                    <a class="nav-link header-a border-red s13" href="../PagesUser/default.aspx"><strong>Trang chủ</strong></a>
+                </li>
+                <li class="nav-item dropdown hvr-sweep-to-top">
+                    <a class="nav-link header-a s13 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><strong>Danh mục</strong></a>
+                    <ul class="dropdown-menu hvr1" aria-labelledby="navbarDropdown">
+                        <%  QLTrungNgocSports.QLTrungNgocSportsService sv = new QLTrungNgocSports.QLTrungNgocSportsService();
+                            var result = sv.DisplayLoaiSanPham();
+                            foreach (var item in result)
+                            {
+                                var result1 = item.TenLoaiSanPham;
+                                var result2 = item.id_LoaiSanPham;
+                                %><li><a class="dropdown-item" href="default.aspx?idlsp=<% Response.Write(result2); %>"><% Response.Write(result1); %></a></li><%
+                            }
+                        %>
+                    </ul>
+                </li>
+                <li class="nav-item hvr-sweep-to-top">
+                    <a class="nav-link header-a s13" href="../PagesUser/LoaiSan.aspx"><strong>Đăng ký sân</strong></a>
+                </li>
+                <li class="nav-item hvr-sweep-to-top">
+                    <a class="nav-link header-a s13" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fas fa-search"></i></a>
+                    <%--<input type="text" class="form-control timkiem1" placeholder="Nhập thông tin cần tìm" aria-label="Recipient's username" aria-describedby="buttonaddon2">--%>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link header-a s13" href="../PagesUser/AddCart.aspx">
+                        <i class="fas fa-shopping-cart"></i>
+                            <sup class="sup-cart">
+                                <%
+                                    if (Session["GioHang"] == null)
+                                    {
+                                        Response.Write("0");
+                                    }
+                                    else
+                                    {
+                                        if (Session["SoLuongGioHang"] == null)
+                                        {
+                                            Response.Write("0");
+                                        }
+                                        else
+                                        {
+                                            Response.Write(int.Parse(Session["SoLuongGioHang"].ToString()));
+                                        }
+                                    }
+                                    %>
+                            </sup>
+                    </a>
+                </li>
+                <li class="nav-item hvr-sweep-to-top">
+                    <a class="nav-link header-a s13" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+            <%----right-nav----%>
+            <%----ModelTimKiem----%>
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+              <div class="offcanvas-header">
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <div class="input-group mb-3 container" runat="server">
+                    <asp:TextBox ID="TextBox1" CssClass="form-control timkiem1" aria-describedby="buttonaddon2" placeholder="Nhập thông tin cần tìm" runat="server"></asp:TextBox>
+                    <asp:Button ID="buttonaddon2" CssClass="btn btn-outline-secondary" runat="server" OnClick="Button1_Click" Text="Tìm kiếm" />
+                </div>
+              </div>
+            </div>
+            <%----ModelTimKiem----%>
+        </nav>
+    </div>
+    <%-------Navbar------%>
+    <%----------Content------------%>
+    <div class="container-fluid">
+    
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    
+    </div>
+    <%----------Content------------%>
+    <footer style="margin:50px auto;">
+        <div class="row footer-1">
+            <div class="col-sm-4 s13">
+                <ul style="list-style-type:none; margin:30px auto">
+                    <li><strong>ĐỊA CHỈ CỬA HÀNG</strong></li>
+                    <hr />
+                    <li><strong>CỬA HÀNG DỤNG CỤ TDTT TRUNG NGỌC</strong></li>
+                    <li>Giờ làm việc hàng ngày: 7 giờ - 21 giờ. Thứ 2 - Chủ Nhật.</li>
+                    <li>Địa chỉ: VPĐD: 02943840234</li>
+                    <li>Đường Nguyễn Chí Thanh, khóm 1, phường 9, TP. Trà Vinh.</li>
+                    <li>Phone: 0963.759.759</li>
+                    <li>Email: trungngoc.sport@gmail.com</li>
+                </ul>
+            </div>
+            <%---link---%>
+            <div class="col-sm-4 s13">
+                <ul class="nav" style="display:block;margin:20px auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hướng dẫn mua hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Các tài khoản giao dịch</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mượn vợt đánh thử</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Chính sách đổi trả và hoàn tiền</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Chính sách bảo hành</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Quy định bảo hành vợt tennis từ nhà sản xuất</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cam kết bảo mật thông tin khách hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Điều khoản sử dụng trang web</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Liên hệ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tìm kiếm</a>
+                    </li>
+                </ul>  
+            </div>
+            <%--Đếm số--%>
+            <div class="col-sm-4">
+                <div class="row container" style="margin:50px auto">
+                    <div class="col-sm-6">
+                       <strong> <% 
+                            Response.Write(sv.DemSanPham());
+                            %>
+                        Sản phẩm</strong>
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>Khách hàng</strong>
+                    </div>
+                </div>
+                <hr />
+                Đăng kí email nhận giảm giá 100.000đ khi mua giày và vợt tại cửa hàng!
+                <div class="input-group mb-3 container">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-paper-plane"></i></span>
+                    <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+                    <button class="btn btn-success" type="button" id="button-addon2">Gửi</button>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <a class="footer-a" href="https://www.facebook.com/profile.php?id=1000097602900201"><i class="fab fa-facebook-square fa-4x"></i></a>
+                            </td>
+                            <td>
+                                <a class="footer-a" href="https://www.facebook.com/profile.php?id=1000097602900201"> <strong>CỬA HÀNG DỤNG CỤ TDTT TRUNG NGỌC</strong><br><strong>Nơi chia sẽ đam mê!</strong></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="footer-2">
+            <p style="text-align:center;">Design by Lê Minh Dũng - DA18TTA - Đồ án chuyên ngành CNTT</p>
+        </div>
+        <div>
+            <a href="#" id="back-to-top" class="btn-back-to-top smooth-scrolls hidden-sm hidden-xs" title="home" role="button" style="display: inline;color:blue;"><i class="far fa-arrow-alt-circle-up fa-2x"></i></a>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>
